@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: Data migration
- * Description: Basic data migration plugin
+ * Description: Starter plugin for WordPress database migrations.
  */
 
 class TP_Migrate {
