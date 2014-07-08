@@ -1,0 +1,27 @@
+.tp-migrate div.progress {
+	display: none;
+}
+
+.tp-migrate div.progress .tp-migrate-status {
+	margin-left: 5px;
+}
+
+.tp-migrate div.progress .tp-migrate-status:after {
+	content: '…';
+}
+
+.tp-migrate div.progress .tp-migrate-status.finished:after {
+	content: '';
+}
+
+.tp-migrate div#message {
+display: none;
+}
+
+.tp-migrate div#message p span {
+	font-weight: bold;
+}
+
+.tp-migrate p.description {
+	margin-top: 15px;
+}
