@@ -88,7 +88,7 @@ class TP_Migrate {
 	 * Setup migration database
 	 */
 	function _connect() {
-		$this->_db = new wpdb( 'root', 'root', $this->_db_name, 'localhost' );
+		$this->_db = new wpdb( DB_USER, DB_PASSWORD, $this->_db_name, 'localhost' );
 	}
 
 	/**
@@ -133,8 +133,8 @@ class TP_Migrate {
 	 * Add scripts and styles
 	 */
 	function enqueue_scripts() {
-		wp_enqueue_script( 'tp-migrate', get_stylesheet_directory_uri() . '/assets/plugins/migrate/js/tp-migrate.js', array( 'jquery' ) );
-		wp_enqueue_style( 'tp-migrate', get_stylesheet_directory_uri() . '/assets/plugins/migrate/sass/admin.css' );
+		wp_enqueue_script( 'tp-migrate', plugins_url( 'assets/js/tp-migrate.js', __FILE__ ), array( 'jquery' ) );
+		wp_enqueue_style( 'tp-migrate', plugins_url( 'assets/sass/admin.css', __FILE__ ) );
 
 		wp_localize_script( 'tp-migrate', 'TP_Migrate_Labels', array(
 			'finished'        => __( 'Data migration complete.', 'tp' ),
@@ -143,7 +143,7 @@ class TP_Migrate {
 		) );
 
 		//Include migration scripts
-		$dir = dirname( __FILE__ ) . '/js/types/';
+		$dir = dirname( __FILE__ ) . '/assets/js/types/';
 
 		foreach( scandir( $dir ) as $file ) {
 			if( '.' == substr( $file, 0, 1 ) ) continue;
@@ -156,7 +156,7 @@ class TP_Migrate {
 	 * Include other migrators
 	 */
 	function include_files() {
-		$dir = dirname( __FILE__) . '/inc/';
+		$dir = dirname( __FILE__) . '/assets/inc/';
 
 		foreach( scandir( $dir ) as $file ) {
 			if( '.' == substr( $file, 0, 1 ) ) continue;
