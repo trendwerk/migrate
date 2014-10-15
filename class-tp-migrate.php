@@ -148,7 +148,7 @@ class TP_Migrate {
 		foreach( scandir( $dir ) as $file ) {
 			if( '.' == substr( $file, 0, 1 ) ) continue;
 
-			wp_enqueue_script( 'tp-migrate-'.$file, get_stylesheet_directory_uri() . '/assets/plugins/migrate/js/types/' . $file, array( 'tp-migrate' ) );
+			wp_enqueue_script( 'tp-migrate-'.$file, plugins_url( '/assets/js/types/' . $file, __FILE__ ), array( 'tp-migrate' ) );
 		}
 	}
 

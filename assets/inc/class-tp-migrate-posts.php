@@ -3,7 +3,7 @@
  * Migrate posts
  */
 class TP_Migrate_Posts extends TP_Migrate {
-	var $db_name = 'posts';
+	var $table_name = 'posts';
 	var $type = 'posts';
 
 	function __construct() {
@@ -17,7 +17,7 @@ class TP_Migrate_Posts extends TP_Migrate {
 	 * Get all entries
 	 */
 	function get() {
-		$entries = $this->_db->get_results( "SELECT * FROM " . $this->db_name . "" );
+		$entries = $this->_db->get_results( "SELECT * FROM {$this->table_name}" );
 
 		wp_send_json( $entries );
 	}
@@ -34,14 +34,13 @@ class TP_Migrate_Posts extends TP_Migrate {
 
 		$new = array(
 			'post_content' => $reference->content,
-			'post_name'    => str_replace( '.html', '', $reference->url ),
 			'post_status'  => 'publish',
 			'post_title'   => $reference->title,
 			'post_type'    => 'post',
 		);
 
 		//Add or update the page
-		if( $_entry = $this->get_post( $reference->id, $this->db_name ) ) {
+		if( $_entry = $this->get_post( $reference->id, $this->table_name ) ) {
 			$post_id = wp_update_post( wp_parse_args( array(
 				'ID' => $_entry->ID,
 			), $new ) );
@@ -51,14 +50,14 @@ class TP_Migrate_Posts extends TP_Migrate {
 
 		//Reference ID and table
 		update_post_meta( $post_id, '_reference_id', $reference->id );
-		update_post_meta( $post_id, '_reference_table', $this->db_name );
+		update_post_meta( $post_id, '_reference_table', $this->table_name );
 
 		//Setup redirect
-		//TO DO: Setup redirect
+		
 
 		//Return
 		wp_send_json( array(
 			'entry' => get_post( $post_id ),
 		) );
 	}
-} //new TP_Migrate_Posts;
+} new TP_Migrate_Posts;
