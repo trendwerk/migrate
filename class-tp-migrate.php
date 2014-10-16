@@ -36,6 +36,8 @@ class TP_Migrate {
 		if( ! is_array( $terms ) )
 			$terms = array( $terms );
 
+		$term_ids = array();
+
 		foreach( $terms as $term ) {
 			if( 0 == strlen( $term ) ) continue;
 
@@ -43,8 +45,11 @@ class TP_Migrate {
 				$term_id = wp_insert_term( $term, $taxonomy );
 			}
 
-			wp_set_object_terms( $post_id, (int) $term_id['term_id'], $taxonomy );
+			$term_ids[] = (int) $term_id['term_id'];			
 		}
+
+		if( 0 < count( $term_ids ) )
+			wp_set_object_terms( $post_id, $term_ids, $taxonomy );
 	}
 
 	/**
