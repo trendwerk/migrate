@@ -1,7 +1,6 @@
 {
 	"name": "trendwerk/migrate",
 	"description": "Starter plugin for WordPress database migrations.",
-	"type": "wordpress-muplugin",
 	"license": "GPL-2.0+",
 	"authors": [
 		{
@@ -11,6 +10,5 @@
 	],
 	"require": {
 		"php": ">=5.4",
-		"composer/installers": "v1.0.19"
     }
 }
