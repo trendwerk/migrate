@@ -2,6 +2,13 @@
 /**
  * Plugin Name: Data migration
  * Description: Starter plugin for WordPress database migrations.
+ *
+ * Plugin URI: https://github.com/trendwerk/migrate
+ * 
+ * Author: Trendwerk
+ * Author URI: https://github.com/trendwerk
+ * 
+ * Version: 1.0.0
  */
 
 class TP_Migrate {
